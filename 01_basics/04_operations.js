@@ -36,3 +36,7 @@ console.log(null >= undefined);   //false
 console.log(null <= undefined);   //false
 console.log(NaN == undefined);   //false
 
+/*------------ === -------------*/
+
+console.log(2===2);   //true
+console.log("2" === 2);    //false
