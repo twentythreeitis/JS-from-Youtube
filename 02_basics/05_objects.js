@@ -20,11 +20,11 @@ console.log(instructor);             //HiteshChoudhary
 /*--------------------------APIS-----------------------------*/
 
 
-//Format of API is similar to an objectsbut without a name which is called JSON
+//Format of API is similar to an object but without a name which is called JSON
 //JavaScript Object Notation(json)
 
-{
-    "name": "Aryan",
-    "course": "JS",
-    "price": "free"
-}
+// {
+//     "name": "Aryan",
+//     "course": "JS",
+//     "price": "free"
+// }
