@@ -29,11 +29,76 @@ Block level variables can't be accessed outside the scope.
 
 
 // var c = 300;
-let a = 300;
-if(true){
-    let a = 10;
-    const b = 20;
-    console.log(a);   //10 local variable let a = 10 works here
+// let a = 300;
+// if(true){
+//     let a = 10;
+//     const b = 20;
+//     console.log(a);   //10 local variable let a = 10 works here
+// }
+
+// console.log(a);   //300 global variable preceeds outisde the scope
+
+/*--------------NESTED SCOPE----------------*/
+
+//  function one(){
+//     const username = "aryan";
+
+//     function two(){
+//         const website = "youtube"   //only available inside {}
+//         console.log(username);
+//     }
+//     // console.log(website);   //error website is not declared 
+
+//     two();
+//  }
+//  one();
+
+//Only output will be "aryan" because username is global wrt to website.
+
+/*Nested functions, child function can access parent's function but not vice versa.*/
+
+//Similar rules works for if-else functions as well
+
+// if(true){
+//     const username = "aryan"
+//     if(username === "aryan"){
+//         const website = " youtube"
+//         console.log(username + website);   //will execute
+//     }
+//     // console.log(website);    //error website is not defined
+// }
+// console.log(username);   //error website is not defined
+
+// Ultimate Output aryan youtube
+
+/*------------HOISTING HIGHLIGHTS IN JS--------------------*/
+
+// function addOne(num){   //this way of function is known as function declaration
+//     return num + 1;
+// }
+// console.log(addOne(5));  //6
+
+//We'll now create a function expression similar to above
+const addTwo = function(num){    //this way of function is known as function expression because the return value is stored in a variable.
+    return num+2; 
 }
 
-console.log(a);   //300 global variable preceeds outisde the scope
+console.log(addTwo(5));   //7
+
+//Now, let's understand if we invoke both the fuction before declaration
+
+//--------------------------ADDONE---------------------------//
+console.log(addOne(5));     //6 Works fine no error
+
+function addOne(num){
+    return num + 1;
+}
+//----------------------------ADDTWO-------------------------//
+
+console.log(addTwo(5));     //Error addTwo has already been declared
+
+const addTwo = function(num){    
+    return num+2; 
+}
+
+//This is the play of hoisting.
