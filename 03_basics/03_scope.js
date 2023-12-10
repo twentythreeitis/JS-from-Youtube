@@ -97,8 +97,8 @@ function addOne(num){
 
 console.log(addTwo(5));     //Error addTwo has already been declared
 
-const addTwo = function(num){    
-    return num+2; 
-}
+// const addTwo = function(num){    
+//     return num+2; 
+// }
 
 //This is the play of hoisting.
