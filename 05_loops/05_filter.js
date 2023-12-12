@@ -75,5 +75,4 @@ console.log(filteredBooks);
     edition: 1996
   }
 ]
-
 */
