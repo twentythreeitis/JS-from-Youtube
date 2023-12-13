@@ -71,12 +71,12 @@ const myNum = [10,9,8,7,6,5,4,3,2,1];
 
 /*------------------------------------------------------------*/
 //Chaining of map()
-const newNum = myNum
-  .map((num) => num * 10 )
-  .map( (num) => num + 3)
-  .filter( (num) => num >= 40)
+// const newNum = myNum
+//   .map((num) => num * 10 )
+//   .map( (num) => num + 3)
+//   .filter( (num) => num >= 40)
 
-console.log(newNum);
+// console.log(newNum);
 
 /*
 [
