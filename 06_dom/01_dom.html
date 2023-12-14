@@ -18,6 +18,56 @@
             adipisicing elit. Nemo velit alias veritatis aut atque, sada
             et officia odio quisquam, dolorem vitae. In, repudiandae fugit.
         </p>
+        <ul class="language">
+            <li>JavaScript</li>
+            <!--Now we have to add more list items but using JS DOM-->
+        </ul>
     </div>
+    <script>
+    // document.getElementById('#id');
+    // document.getElementsByClassName('.className');
+    // document.getElementById('#id').getAttribute('id');
+    // document.getElementById('#id').setAttribute('class', "newClass");
+    // document.querySelector('p');
+    // document.querySelector('#id');
+    // document.querySelector('.className');
+    
+    //ADD ELEMENTS USING DOM//
+    /*We have to add more list items using JS in the ul class="language".
+    We can create a function which can take argument and then enter it in the list
+    */
+   
+    function addLanguage(langName){
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `${langName}`
+        document.querySelector('.language').appendChild(listItem)
+    }
+    addLanguage("Java");
+    addLanguage("TypeScript");
+
+    //Optimized Approach
+    function addOptiLanguage(langName){
+        const li = document.createElement('li');
+        const addText = document.createTextNode(langName)
+        li.appendChild(addText);
+        document.querySelector('.language').appendChild(li);
+    }
+    addOptiLanguage('Golang');
+    
+
+
+    //EDIT ELEMENTS USING DOM
+
+    const secondLang = document.querySelector("li:nth-child(2)");  //Java ka <li> select krke isko replace krdiye
+    // secondLang.innerHTML = "Mojo" --> this works but unoptimized.
+    const newLi = document.createElement('li');
+    newli.textContent = "Mojo";
+    secondLang.replaceWith(newLi);
+
+
+    //1st li JavaScript ko Python se replace krna h
+    const firstLang = document.querySelector("li:first-child");
+    firstLang.outerHTML = '<li>Python</li>'
+    </script>
 </body>
 </html>
