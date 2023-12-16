@@ -3,9 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Events</title>
+    <title>htnml Events </title>
 </head>
-<body>
-    
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
 </body>
+<script>
+    /*--------------------APPROACH 1-----------------------------------*/$
+
+    //Approach 1 is doing .onclick in the direct HTML.
+
+    /*--------------------APPROACH 2-----------------------------------*/
+
+    // document.getElementById('owl').onclick = function(){
+    //     alert("owl clicked");
+    // }
+
+    /*Above way of using onclick works well but is not recommended becuase it limits functionality
+    Hence, we should use EventListener()..
+    
+    /*-------------------------APPROACH 3-------------------------------*/
+
+    document.getElementById('owl').addEventListener('click', function(){
+        alert('Owl clicked again!!');
+    })
+
+    /*Here are some other events approaches used in earlier days-*/
+     // attachEvent()
+    // jQuery - on
+
+    /*-----------------EVENT OBJECT 'e'----------------------------------*/
+    document.getElementById('images').addEventListener('click', function(e){
+        console.log("clicked inside the ul");
+    }, false)         //'false' is a default
+
+
+    /*---------------EVENTS TO LEARN ABOUT POINTER EVENT------------------*/
+    // type, timestamp, defaultPrevented
+    // target, toElement, srcElement, currentTarget,
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+
+    /*-----------------EVENT PROPAGATION---------------------------------*/
+    /*If there are more than two events assigned to a single element,
+    we have to choice to operate all of them or only the direct event.
+    We do it by event propagation 
+
+    addEventListener('click', call-back function(){}, event-propagation)
+    syntax hota h jisme event-propagation ka default value "false"  hota h.
+
+    'false' allow multiple events at a element.
+    'true' stops multiple events to work at any element.
+
+    /*Event propagation has two contexts (1)Event Bubling (2)Event Capturing
+
+    Let's take two examples.
+    */
+    document.getElementById('images').addEventListener('click', function(e){
+        console.log("Clicked inside the Unordered List");
+    }, false)         //false rahe ya na rahe code will still run
+
+
+    document.getElementById('owl').addEventListener('click', function(e){
+        console.log("Owl clicked");
+    }, false)         //false rahe ya na rahe code will still run
+
+    /*
+    Both the code are same except the target ids are different one is 'images'
+    and the other is 'owl'.
+
+    But, 'owl' comes under the umbrella of 'images'. What event will took place?
+    And, in what order?
+
+    When executed, this is called BUBBLING
+
+    'Owl clicked' and then 
+    'Clicked inside the Unordered List';
+    */
+
+    /*-----------WHAT IF TRUE------------*/
+    document.getElementById('images').addEventListener('click', function(e){
+        console.log("Clicked inside the Unordered List");
+    }, true)
+
+
+    document.getElementById('owl').addEventListener('click', function(e){
+        console.log("Owl clicked");
+    }, true) 
+
+    /*When executed, this is called CAPTURING
+
+    'Clicked inside the Unordered List',
+    'Owl clicked'
+    */
+
+    /* Here comes the use of stopPropagation() method under Pointer Event*/
+
+    document.getElementById('owl').addEventListener('click', function(e){
+        console.log("owl clicked");
+        e.stopPropagation()       //e is the Event object 
+    }, false)
+    
+    document.getElementById('google').addEventListener('click',function(e){
+        e.preventDefault();
+        e.stopPropagation()
+        console.log("google clicked");
+    }, false)
+   
+    /*--Let's write a program to whichever image we click, that image disappears--*/
+
+    document.querySelector('#images').addEventListener('click', function(e){
+        console.log(e.target.tagName);
+        if (e.target.tagName === 'IMG') {
+            console.log(e.target.id);
+            let removeIt = e.target.parentNode
+            removeIt.remove()
+        }
+    
+        
+    })
+    
+    //removeIt.parentNode.removeChild(removeIt)
+</script>
 </html>
