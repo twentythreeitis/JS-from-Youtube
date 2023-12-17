@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JS from Youtube</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+    setInterval(function(){
+        // console.log("Aryan");  //constant printing after 2seconds.
+    }, 2000)
+
+    //OTHER WAY BY USING VARIABLE//
+
+    const startInt =  function(){
+        console.log("Aryan is running!");
+    }
+    let clrInt;
+    
+
+    /*-----HOW TO STOP SET INTERVAL LIKE CLEAR INTERVAL----------*/
+    /*--------We have another method i.e "clearInterval()"-------*/
+
+    /*----Now adding buttons events to start and stop ---------*/
+    
+    document.querySelector('#start').addEventListener('click',function(){
+        setInterval(startInt,1000);
+    })
+
+    document.querySelector('#stop').addEventListener('click',function(){
+        clearInterval(clrInt);
+        console.log('Stopped');
+    })
+    
+</script>
+</html>
