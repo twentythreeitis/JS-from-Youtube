@@ -1,0 +1,67 @@
+<!--
+/*---------------ASYNC JS ITNRODUCTION--------------------------*/
+
+/*The most basic function to understand Async nature of JavaScript is 
+setTimeout()
+setTimeout() is a method which also makes API calls and its not a core part of JS.
+It comes along with any runtime environment like web browser or Node JS.
+
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JS from Youtube</h1>
+    <button id="stop">Click Me</button>
+</body>
+<script>
+    //setTimeout(callback_function, time in miliseconds);
+
+    /*setTimeout() waits for a function to run once after specific time.*/
+
+    // setTimeout(function(){
+    //     // console.log("Aryan learns JS");//'Aryan learns JS' gets printed after 2seconds
+    // }, 2000)
+
+    //OR//
+
+    // const pauseMe = function(){
+    //     // console.log("Aryan learns JS");
+    // }
+
+    // setTimeout(pauseMe,2000);
+
+    /*Let's change the <h1> by using setTimeout after a certain time*/
+
+    const changeH1 = function(){
+        document.querySelector('h1').innerHTML = "Brian Stacy loves JS";
+    }
+    // setTimeout(changeH1,3000);
+
+
+    /*-------HOW TO STOP SETTIMEOUT BEFORE THE TIME----------------*/
+
+    //clearTimeout() takes reference from any setTimeout().
+
+    const stopH1 = setTimeout(changeH1,3000);
+
+    document.querySelector('#stop').addEventListener('click', function(){
+        clearTimeout(stopH1);
+        console.log("STOPPED");
+    })
+     
+    /*As soon as we click on the button, before 3 seconds
+        JS from Youtube will get printed
+        X(Brian Stacy loves JS)X
+    */
+
+    /*There is another method setInterval() which perform repititive tasks after
+    a certain time unlike setTimeout performs only once.
+    */
+</script>
+</html>
