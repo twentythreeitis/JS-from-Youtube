@@ -20,22 +20,39 @@
     const startInt =  function(){
         console.log("Aryan is running!");
     }
-    let clrInt;
+    // let clrInt;
     
 
     /*-----HOW TO STOP SET INTERVAL LIKE CLEAR INTERVAL----------*/
     /*--------We have another method i.e "clearInterval()"-------*/
 
-    /*----Now adding buttons events to start and stop ---------*/
+    /*------Now adding buttons events to start and stop ---------*/
+
+    //Step 1. Creating a function to execute when start is clicked//
+
+    const startNow = function(){
+        document.querySelector('h1').innerHTML = `Aryan is running.`;
+    }
     
+    //Step 2. Creating a function to execute when stop is clicked//
+    
+    const stopNow = function(){
+        document.querySelector('h1').innerHTML = `Aryan has stopped.`;
+    }
+    
+    //Step 3. Adding addEventListerner to the start button//
+
     document.querySelector('#start').addEventListener('click',function(){
-        setInterval(startInt,1000);
+        setInterval(startNow,3000);
     })
+    
+    //Step 4. Adding addEventListener to the stop button//
 
     document.querySelector('#stop').addEventListener('click',function(){
-        clearInterval(clrInt);
-        console.log('Stopped');
-    })
-    
+        clearInterval(startNow);
+        // setInterval(stopNow,3000);
+        
+        // console.log('Stopped');
+    }) 
 </script>
 </html>
