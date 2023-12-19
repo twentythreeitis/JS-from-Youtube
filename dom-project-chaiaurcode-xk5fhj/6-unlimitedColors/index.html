@@ -19,6 +19,69 @@
     <h1>Start should change the Background color every second</h1>
     <button id="start">Start</button>
     <button id="stop">Stop</button>
-    <script src="chaiaurcode.js"></script>
+    <!--script src="chaiaurcode.js"></script-->
   </body>
+  <script>
+    /*
+    1)To approach this problem, I have to create a function which will provide me random color every
+    execution.
+    2)Creating a start function which will execute the color function on clicking the start button.
+    3)Creating a stop function which will stop executing the color function on clicking the stop button.
+    */
+
+    /*
+      We will create a function that will give a 6digit hexadecimal value starting from a 
+      '#_ _ _ _ _ _'.
+
+      Step1. Creating a variable hex that will acts as an array of input numbers or alphabets we can take in
+      creating any hexadecimal value.
+
+      Step2. Creating a random variable color to act as a new array which will take input from 
+      'hex' array using for loop.
+
+      Step3. We will create a for loop for 6 iteration only to extract any 6 indexes from 'hex' array.
+
+      Step4. To collect all possible values from 0123456789ABCDEF from 'hex' string,
+      We will have to create scratch indexes upto 0-16 and whatever index comes it will extract that from
+      'hex'. 
+
+      Step4. Extracting that value from hex by using forloop and adding those alphabets in 'color'.
+
+      Step5. returning 'color' because it is a function. 
+      
+      Creating a function which will give output as a hexadecimal number
+
+      We have to use Math.random() and floor perfectly to create a 16 digit random number.
+    */
+
+    //Creating a function to print random color//
+    const randomColor = function(){
+      const hex = "0123456789ABCDEF";
+      let color = "#";
+      for(let i=0;i<6;i++){
+        color += hex[Math.floor(Math.random()*16)];
+      }
+      return color;
+    }
+
+    let interValId;
+    const bgChange = function(){
+      document.body.style.backgroundColor = randomColor();
+    }
+    
+    document.querySelector('#start').addEventListener('click',function startChangingColor(){
+      interValId = setInterval(bgChange,1000);
+    })
+    
+    document.querySelector('#stop').addEventListener('click',function stopChangingColor(){
+       clearInterval(interValId,1000);
+    })
+
+    /*
+    IntervalId as a reference variable use krna pda to stop the colorChange. 
+    If I use it direct in the stop scope(clearInterval will not work).
+    Therefore, we gave interValId as a globalscope var and then used it to set Interval and stopInterval.
+    */
+
+  </script>
 </html>
