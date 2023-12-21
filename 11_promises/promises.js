@@ -29,12 +29,12 @@ result — initially undefined, then changes to value when resolve(value) is cal
 
 //Example of a successful job completion, a fulfilled promise//
 
-let promiseSuccess = new Promise(function(resolve, reject) {
-    // the function is executed automatically when the promise is constructed
+// let promiseSuccess = new Promise(function(resolve, reject) {
+//     // the function is executed automatically when the promise is constructed
   
-    // after 1 second signal that the job is done with the result "done"
-    setTimeout(() => resolve("done"), 1000);
-});
+//     // after 1 second signal that the job is done with the result "done"
+//     setTimeout(() => resolve("done"), 1000);
+// });
 
 /*
 After 1 second of "processing", the executer calls resolve("done") to produce
@@ -43,10 +43,10 @@ the result. This changes the state of the promise object to "fulfilled".
 
 //Example of a failed job completion, a rejected promise//
 
-let promiseFail = new Promise(function(resolve, reject) {
-    // after 1 second signal that the job is finished with an error
-    setTimeout(() => reject(new Error("Whoops!")), 1000);
-});
+// let promiseFail = new Promise(function(resolve, reject) {
+//     // after 1 second signal that the job is finished with an error
+//     setTimeout(() => reject(new Error("Whoops!")), 1000);
+// });
 
 /*
 The call to reject(...) moves the promise object to "rejected" state
@@ -54,47 +54,123 @@ The call to reject(...) moves the promise object to "rejected" state
 
 /*----------------------THEORY OVER FOR PROMISES-----------------------*/
 /*-------CORRECTING PREVIOUS CALLBACK HELL TO UNDERSTAND PROMISES------*/
+/*
+function register(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            console.log("Registeration Successful");
+            resolve();
+        },1000)
+    })
+}
+function sendEmail(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            console.log("Email Verification");
+            resolve();
+        },3000)
+    })
+}
+function login(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            console.log("Login Successful");
+            resolve();
+        },2000)
+    })
+}
+function getUserData(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            console.log("User data retrieved");
+            resolve();
+        },1000)
+    })
+}
+function displayUserData(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            console.log("This is user data!");
+            resolve();
+        },1000)
+    })
+}
 
-function register(callback){
-    setTimeout(()=>{
-      console.log("Registeration Successful");
-      callback();
-    },1000)
-  }
-  function sendEmail(callback1){
-    setTimeout(()=>{
-      console.log("Email Verification");
-      callback1();
-    },3000)
-  }
-  function login(callback2){
-    setTimeout(()=>{
-      console.log("Login Successful");
-      callback2();
-    },2000)
-  }
-  function getUserData(callback3){
-    setTimeout(()=>{
-      console.log("User data retrieved");
-      callback3();
-    },2000)
-  }
-  function displayUserData(){
-    setTimeout(()=>{
-      console.log("This is user data!");
-    },2000)
-  }
+  register()
+  .then(sendEmail)
+  .then(login)
+  .then(getUserData)
+  .then(displayUserData);    //chaining
 
   console.log("Other components are working!!");
+*/
 
-  register(function(){
-    sendEmail(function(){
-      login(function(){
-        getUserData(function(){
-          displayUserData();
-        });
-      });
-    });
+//Now, suppose there's an error in register() function, how will we handle the error?//
+/*---------------HANDLING ERRORS WITH PROMISES---------------------*/
+
+function register(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            return reject("Error agya bhai!!");      //reject in place of "resolve()"
+            console.log("Registeration Successful");
+        },1000)
+    })
+}
+function sendEmail(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            console.log("Email Verification");
+            resolve();
+        },3000)
+    })
+}
+function login(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            console.log("Login Successful");
+            resolve();
+        },2000)
+    })
+}
+function getUserData(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            console.log("User data retrieved");
+            resolve();
+        },1000)
+    })
+}
+function displayUserData(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            console.log("This is user data!");
+            resolve();
+        },1000)
+    })
+}
+
+  register()
+  .then(sendEmail)    //.then() recieves the resolve part of the callback.
+  .then(login)
+  .then(getUserData)
+  .then(displayUserData)
+  .catch((err)=>{
+    console.log(`An error in the block is received by .catch() like here 
+    the error is ${err}`);
   });
+
+  console.log("Other components are working!!");
+/*
+OUTPUT
+    Other components are working!!
+    An error in the block is received by .catch() like here 
+    the error is Error agya bhai!!
+*/
+
+/*
+  Now, you hav learnt how useful promises can be to incorporate asynchronous JS.
+  There is a new method to make the promises handling much easier:
+  ASYNC/AWAIT which will see in the next doc.
+*/
 
   
