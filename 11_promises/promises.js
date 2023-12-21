@@ -29,12 +29,12 @@ result — initially undefined, then changes to value when resolve(value) is cal
 
 //Example of a successful job completion, a fulfilled promise//
 
-// let promiseSuccess = new Promise(function(resolve, reject) {
-//     // the function is executed automatically when the promise is constructed
+let promiseSuccess = new Promise(function(resolve, reject) {
+    // the function is executed automatically when the promise is constructed
   
-//     // after 1 second signal that the job is done with the result "done"
-//     setTimeout(() => resolve("done"), 1000);
-// });
+    // after 1 second signal that the job is done with the result "done"
+    setTimeout(() => resolve("done"), 1000);
+});
 
 /*
 After 1 second of "processing", the executer calls resolve("done") to produce
@@ -43,10 +43,10 @@ the result. This changes the state of the promise object to "fulfilled".
 
 //Example of a failed job completion, a rejected promise//
 
-// let promiseFail = new Promise(function(resolve, reject) {
-//     // after 1 second signal that the job is finished with an error
-//     setTimeout(() => reject(new Error("Whoops!")), 1000);
-// });
+let promiseFail = new Promise(function(resolve, reject) {
+    // after 1 second signal that the job is finished with an error
+    setTimeout(() => reject(new Error("Whoops!")), 1000);
+});
 
 /*
 The call to reject(...) moves the promise object to "rejected" state
@@ -54,7 +54,7 @@ The call to reject(...) moves the promise object to "rejected" state
 
 /*----------------------THEORY OVER FOR PROMISES-----------------------*/
 /*-------CORRECTING PREVIOUS CALLBACK HELL TO UNDERSTAND PROMISES------*/
-/*
+
 function register(){
     return new Promise((resolve,reject)=>{
         setTimeout(()=>{
@@ -103,7 +103,7 @@ function displayUserData(){
   .then(displayUserData);    //chaining
 
   console.log("Other components are working!!");
-*/
+
 
 //Now, suppose there's an error in register() function, how will we handle the error?//
 /*---------------HANDLING ERRORS WITH PROMISES---------------------*/
@@ -173,4 +173,3 @@ OUTPUT
   ASYNC/AWAIT which will see in the next doc.
 */
 
-  
