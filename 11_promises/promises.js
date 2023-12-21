@@ -7,7 +7,7 @@ The constructor syntax for a promise object is:
 
 
 */                         //This function below is the executer that runs automatically.
-let promise = new Promise(function(resolve, reject) {
+let promiseVar = new Promise(function(resolve, reject) {
   // executor (the producing code which will take time)
 });
 
@@ -27,6 +27,33 @@ state — initially "pending", then changes to either "fulfilled" when resolve i
 result — initially undefined, then changes to value when resolve(value) is called or error when reject(error) is called.
 */
 
+//Example of a successful job completion, a fulfilled promise//
+
+let promiseSuccess = new Promise(function(resolve, reject) {
+    // the function is executed automatically when the promise is constructed
+  
+    // after 1 second signal that the job is done with the result "done"
+    setTimeout(() => resolve("done"), 1000);
+});
+
+/*
+After 1 second of "processing", the executer calls resolve("done") to produce
+the result. This changes the state of the promise object to "fulfilled".
+*/
+
+//Example of a failed job completion, a rejected promise//
+
+let promiseFail = new Promise(function(resolve, reject) {
+    // after 1 second signal that the job is finished with an error
+    setTimeout(() => reject(new Error("Whoops!")), 1000);
+});
+
+/*
+The call to reject(...) moves the promise object to "rejected" state
+*/
+
+/*----------------------THEORY OVER FOR PROMISES-----------------------*/
+/*-------CORRECTING PREVIOUS CALLBACK HELL TO UNDERSTAND PROMISES------*/
 
 function register(callback){
     setTimeout(()=>{
