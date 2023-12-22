@@ -154,7 +154,7 @@ function displayUserData(){
   .then(login)
   .then(getUserData)
   .then(displayUserData)
-  .catch((err)=>{
+  .catch((err)=>{         //.catch() receives the error part of the callback.
     console.log(`An error in the block is received by .catch() like here 
     the error is ${err}`);
   });
@@ -167,6 +167,12 @@ OUTPUT
     the error is Error agya bhai!!
 */
 
+/*finally
+
+The finally() method is always executed whether the promise is fulfilled 
+or rejected. In other words, the finally() method is executed when the 
+promise is settled.
+*/
 /*
   Now, you hav learnt how useful promises can be to incorporate asynchronous JS.
   There is a new method to make the promises handling much easier:
